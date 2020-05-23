@@ -1,4 +1,4 @@
-# Explore TODO list with Siri-shortcuts: <In-progress>
+# Explore TODO list with Siri-shortcuts: In-progress
 
 let's create a small project of TODO list with limited set of operations to explore Siri Shortcuts.
 
