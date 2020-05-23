@@ -66,6 +66,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jgb-jk-0de">
                                                 <rect key="frame" x="138" y="178.5" width="138" height="30"/>
                                                 <state key="normal" title="Choose Task"/>
+                                                <connections>
+                                                    <action selector="tapChooseTask:" destination="RIk-1C-Afd" eventType="touchUpInside" id="ADm-AP-Yeb"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Result&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nr8-M8-Mu1">
                                                 <rect key="frame" x="276" y="183.5" width="138" height="20.5"/>
@@ -91,6 +94,9 @@
                         <viewLayoutGuide key="safeArea" id="nRO-Xz-UFR"/>
                     </view>
                     <navigationItem key="navigationItem" title="Task" id="hd5-Sw-ku4"/>
+                    <connections>
+                        <outlet property="taskTypeResult" destination="Nr8-M8-Mu1" id="UsB-Bj-pad"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHr-6I-41H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
