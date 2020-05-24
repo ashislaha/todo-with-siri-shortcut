@@ -24,3 +24,15 @@ Sub-task:
 	coding 
 	- code language
 ```
+
+## Objective:
+
+1. Want to create a task using "Siri-shortcut"
+
+2. It should be user-interactive - Primary Task and then Secondary Task. Siri should guide the user to perform certain set of actions.
+
+3. Promote "Add to Siri" Button inside the application & help the user to adport it.
+
+4. How to maintain the business logic among primary code and Intents extension.
+
+
