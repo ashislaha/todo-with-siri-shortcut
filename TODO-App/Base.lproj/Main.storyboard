@@ -68,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="p5h-dt-XZr">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Fy-PQ-dMt">
                                         <rect key="frame" x="168.5" y="0.0" width="77" height="20.5"/>
@@ -118,17 +118,26 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GB1-tf-2z9">
-                                        <rect key="frame" x="0.0" y="148.5" width="414" height="625.5"/>
+                                        <rect key="frame" x="0.0" y="148.5" width="414" height="545.5"/>
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5t-gl-rfq">
+                                <rect key="frame" x="0.0" y="782" width="414" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="c1m-kY-Hbj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="nRO-Xz-UFR" firstAttribute="bottom" secondItem="p5t-gl-rfq" secondAttribute="bottom" id="CWf-AJ-pda"/>
                             <constraint firstItem="p5h-dt-XZr" firstAttribute="top" secondItem="nRO-Xz-UFR" secondAttribute="top" id="VN0-jo-GZM"/>
                             <constraint firstItem="nRO-Xz-UFR" firstAttribute="trailing" secondItem="p5h-dt-XZr" secondAttribute="trailing" id="Z2Z-lJ-WWe"/>
-                            <constraint firstItem="nRO-Xz-UFR" firstAttribute="bottom" secondItem="p5h-dt-XZr" secondAttribute="bottom" id="hdD-Hg-yfu"/>
+                            <constraint firstItem="p5t-gl-rfq" firstAttribute="top" secondItem="p5h-dt-XZr" secondAttribute="bottom" id="bdp-9h-FKO"/>
+                            <constraint firstItem="p5t-gl-rfq" firstAttribute="leading" secondItem="nRO-Xz-UFR" secondAttribute="leading" id="gBP-CZ-r9M"/>
                             <constraint firstItem="p5h-dt-XZr" firstAttribute="leading" secondItem="nRO-Xz-UFR" secondAttribute="leading" id="i2v-qM-CcF"/>
+                            <constraint firstItem="nRO-Xz-UFR" firstAttribute="trailing" secondItem="p5t-gl-rfq" secondAttribute="trailing" id="pNh-js-OXl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nRO-Xz-UFR"/>
                     </view>
@@ -140,6 +149,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addToSiriView" destination="p5t-gl-rfq" id="jtc-Ng-7PQ"/>
                         <outlet property="secondaryTaskTypeResult" destination="zeu-Ds-QrP" id="nYs-hU-aq4"/>
                         <outlet property="subTaskButtonOutlet" destination="NC5-pj-23r" id="M1O-n3-OuS"/>
                         <outlet property="taskTypeResult" destination="Nr8-M8-Mu1" id="UsB-Bj-pad"/>

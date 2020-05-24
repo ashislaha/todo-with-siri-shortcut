@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Intents
 
 // Model
 
@@ -74,6 +75,12 @@ struct Task {
 	let secondaryDescription: String
 	let createdTime: Date // can be treated as unique identifier to delete it
 	let performTime: Date
+	
+	// define intent here
+	// every task should be associated with an TaskIntent - will be created later.
+	var intent: INIntent {
+		return INIntent()
+	}
 }
 
 class TaskManager {
