@@ -8,68 +8,104 @@
 
 import UIKit
 
-enum TaskType {
-	case none
-	case listening
-	case playing
-	case studying
-	case coding
-	
-	func getTitle() -> String {
-		switch self {
-		case .none: return ""
-		case .listening: return "Listening"
-		case .playing: return "Playing"
-		case .studying: return "Studying"
-		case .coding: return "Coding"
-		}
-	}
-}
-
 class NewTaskViewController: UIViewController {
 
-	private var currentTask: TaskType = .none {
+	// MARK:- Private variables
+	private var currentTask: PrimaryTaskType = .none {
 		didSet {
 			taskTypeResult?.text = currentTask.getTitle()
+			
+			secondaryTaskTypeResult?.isHidden = true
+			subTaskButtonOutlet.isHidden = false
+			subTaskButtonOutlet.setTitle(currentTask.getSubTaskTitle(), for: .normal)
 		}
 	}
 	
-	@IBOutlet weak var taskTypeResult: UILabel!
+	private var currentSubTask: SecondaryTaskType = .none
 	
+	// MARK:- Outlets
+	@IBOutlet weak var taskTypeResult: UILabel!
+	@IBOutlet weak var subTaskButtonOutlet: UIButton! {
+		didSet {
+			subTaskButtonOutlet.isHidden = true
+		}
+	}
+	@IBOutlet weak var secondaryTaskTypeResult: UILabel! {
+		didSet {
+			secondaryTaskTypeResult.isHidden = true
+		}
+	}
+	
+	// MARK:- ViewController life cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
 	
+	// MARK:- Actions
 	@IBAction func tapChooseTask(_ sender: UIButton) {
 		
-		let alertController = UIAlertController(title: "Choose a task", message: "", preferredStyle: .actionSheet)
-		
-		let listenAction = UIAlertAction(title: "Listening", style: .default) { (action) in
-			self.currentTask = .listening
-			// add the task into model
-			
-		}
-		
-		let playingAction = UIAlertAction(title: "Playing", style: .default) { (action) in
-			self.currentTask = .playing
-			// add the task into model
-			
-		}
-		
-		let studyAction = UIAlertAction(title: "Studying", style: .default) { (action) in
-			self.currentTask = .studying
-			// add the task into model
-			
-		}
-		
-		let codingAction = UIAlertAction(title: "Coding", style: .default) { (action) in
-			self.currentTask = .coding
-			// add the task into model
-		}
-		let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
-		
-		[listenAction, playingAction, studyAction, codingAction, cancelAction].forEach { alertController.addAction($0) }
-		present(alertController, animated: true, completion: nil)
+		let primaryTypes: [PrimaryTaskType] = [.listening, .playing, .studying, .coding]
+		showActionSheet(taskType: .primary, primaryTypes: primaryTypes)
 	}
 	
+	@IBAction func tapSubTask(_ sender: UIButton) {
+		guard currentTask != .none else { return }
+		
+		switch currentTask.mappedToSubTask() {
+		case .none: break
+		case .albums(let colletion): showActionSheet(taskType: .secondary, secondaryOptions: colletion)
+		case .books(let names): showActionSheet(taskType: .secondary, secondaryOptions: names)
+		case .coding(let languages): showActionSheet(taskType: .secondary, secondaryOptions: languages)
+		case .games(let list): showActionSheet(taskType: .secondary, secondaryOptions: list)
+		}
+	}
+	
+	@IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
+		
+		guard let primaryDescription = taskTypeResult.text, !primaryDescription.isEmpty,
+			let secondaryDescription = secondaryTaskTypeResult.text, !secondaryDescription.isEmpty
+			else {
+				return
+		}
+		
+		// create a new task with primary task, secondary task and date & time
+		let task = Task(primaryDescription: primaryDescription,
+						secondaryDescription: secondaryDescription,
+						createdTime: Date(),
+						performTime: Date()) // will update later -- should be user input
+		TaskManager.shared.addTask(task: task)
+		navigationController?.popViewController(animated: true)
+	}
+	
+	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [String] = []) {
+		
+		let title = taskType == .primary ? "Choose a task": "Choose a sub-task"
+		let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+		
+		if taskType == .primary {
+			
+			for primaryTask in primaryTypes {
+				let actionTitle = primaryTask.getTitle()
+				let alertAction = UIAlertAction(title: actionTitle, style: .default) { (action) in
+					self.currentTask = primaryTask
+				}
+				alertController.addAction(alertAction)
+			}
+			
+		} else { // secondary
+			
+			for each in secondaryOptions {
+				let alertAction = UIAlertAction(title: each, style: .default) { (action) in
+					self.secondaryTaskTypeResult.isHidden = false
+					self.secondaryTaskTypeResult.text = each
+				}
+				alertController.addAction(alertAction)
+			}
+		}
+		
+		let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+		alertController.addAction(cancelAction)
+		present(alertController, animated: true, completion: nil)
+	}
 }
+

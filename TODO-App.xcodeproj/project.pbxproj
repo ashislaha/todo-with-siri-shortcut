@@ -14,6 +14,7 @@
 		55514EE424798011008BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE324798011008BAD5C /* Assets.xcassets */; };
 		55514EE724798011008BAD5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE524798011008BAD5C /* LaunchScreen.storyboard */; };
 		55514EEF24798EF7008BAD5C /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */; };
+		55514EF1247A7675008BAD5C /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EF0247A7675008BAD5C /* TaskManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		55514EE624798011008BAD5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55514EE824798011008BAD5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		55514EF0247A7675008BAD5C /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			children = (
 				55514EDA2479800A008BAD5C /* AppDelegate.swift */,
 				55514EDC2479800A008BAD5C /* SceneDelegate.swift */,
+				55514EF0247A7675008BAD5C /* TaskManager.swift */,
 				55514EDE2479800A008BAD5C /* HistoryViewController.swift */,
 				55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */,
 				55514EE02479800A008BAD5C /* Main.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				55514EDF2479800A008BAD5C /* HistoryViewController.swift in Sources */,
 				55514EDB2479800A008BAD5C /* AppDelegate.swift in Sources */,
+				55514EF1247A7675008BAD5C /* TaskManager.swift in Sources */,
 				55514EEF24798EF7008BAD5C /* NewTaskViewController.swift in Sources */,
 				55514EDD2479800A008BAD5C /* SceneDelegate.swift in Sources */,
 			);

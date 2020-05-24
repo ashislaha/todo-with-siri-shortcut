@@ -10,12 +10,20 @@ import UIKit
 
 class HistoryViewController: UITableViewController {
 
+	// MARK:- View Controller life cycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		tableView.tableFooterView = UIView()
-		
 	}
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		tableView.reloadData()
+	}
+	
+	// MARK:- Actions
 	@IBAction func tapNewTask(_ sender: UIBarButtonItem) {
 		print("create a new task")
 	}
@@ -28,12 +36,15 @@ extension HistoryViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 10
+		return TaskManager.shared.tasks.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-		cell.textLabel?.text = "\(indexPath.row)"
+		
+		let task = TaskManager.shared.tasks[indexPath.row]
+		cell.textLabel?.text = "Task \(indexPath.row + 1): \(task.primaryDescription)"
+		cell.detailTextLabel?.text = task.secondaryDescription
 		return cell
 	}
 }
