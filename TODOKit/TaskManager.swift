@@ -11,14 +11,14 @@ import Intents
 
 // Model
 
-enum PrimaryTaskType {
+public enum PrimaryTaskType {
 	case none
 	case listening
 	case playing
 	case studying
 	case coding
 	
-	func getTitle() -> String {
+	public func getTitle() -> String {
 		var title = ""
 		switch self {
 		case .none: title = ""
@@ -30,7 +30,7 @@ enum PrimaryTaskType {
 		return title
 	}
 	
-	func getSubTaskTitle() -> String {
+	public func getSubTaskTitle() -> String {
 		// this could be array of enum
 		var title = ""
 		switch self {
@@ -43,7 +43,7 @@ enum PrimaryTaskType {
 		return title
 	}
 	
-	func mappedToSubTask() -> SecondaryTaskType {
+	public func mappedToSubTask() -> SecondaryTaskType {
 		var SecondaryTaskType: SecondaryTaskType = .none
 		switch self {
 		case .none: SecondaryTaskType = .none
@@ -56,7 +56,7 @@ enum PrimaryTaskType {
 	}
 }
 
-enum SecondaryTaskType {
+public enum SecondaryTaskType {
 	case none
 	case albums(colletion:[String])
 	case games(list:[String])
@@ -64,29 +64,39 @@ enum SecondaryTaskType {
 	case coding(languages: [String])
 }
 
-enum TaskType {
+public enum TaskType {
 	case primary
 	case secondary
 }
 
 // define Task
-struct Task {
-	let primaryDescription: String
-	let secondaryDescription: String
-	let createdTime: Date // can be treated as unique identifier to delete it
-	let performTime: Date
+public struct Task {
+	public let primaryDescription: String
+	public let secondaryDescription: String
+	public let createdTime: Date // can be treated as unique identifier to delete it
+	public let performTime: Date
+	
+	public init(primaryDesc: String,
+				secondaryDesc: String,
+				createTime: Date,
+				performTime: Date) {
+		self.primaryDescription = primaryDesc
+		self.secondaryDescription = secondaryDesc
+		self.createdTime = createTime
+		self.performTime = performTime
+	}
 	
 	// define intent here
 	// every task should be associated with an TaskIntent - will be created later.
-	var intent: INIntent {
+	public var intent: INIntent {
 		return INIntent()
 	}
 }
 
-class TaskManager {
-	static let shared = TaskManager()
+open class TaskManager {
+	public static let shared = TaskManager()
 	
-	var tasks: [Task] = []
+	public var tasks: [Task] = []
 	
 	public func addTask(task: Task) {
 		tasks.append(task)

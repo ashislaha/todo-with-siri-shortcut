@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TODOKit
 import IntentsUI
 
 class NewTaskViewController: UIViewController {
@@ -73,10 +74,10 @@ class NewTaskViewController: UIViewController {
 		}
 		
 		// create a new task with primary task, secondary task and date & time
-		let task = Task(primaryDescription: primaryDescription,
-						secondaryDescription: secondaryDescription,
-						createdTime: Date(),
-						performTime: Date()) // will update later -- should be user input
+		let task = Task(primaryDesc: primaryDescription,
+						secondaryDesc: secondaryDescription,
+						createTime: Date(),
+						performTime: Date())
 		TaskManager.shared.addTask(task: task)
 		navigationController?.popViewController(animated: true)
 	}
@@ -116,7 +117,10 @@ class NewTaskViewController: UIViewController {
 	
 	private func addSiriShortCutButton() {
 		
-		let task = Task(primaryDescription: "none", secondaryDescription: "none", createdTime: Date(), performTime: Date())
+		let task = Task(primaryDesc: "none",
+						secondaryDesc: "none",
+						createTime: Date(),
+						performTime: Date())
 		let addToSiriButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
 		addToSiriButton.shortcut = INShortcut(intent: task.intent)
 		addToSiriButton.delegate = self
