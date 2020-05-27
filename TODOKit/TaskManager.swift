@@ -101,12 +101,12 @@ open class TaskManager {
 	public static let shared = TaskManager()
 	
 	public lazy var tasks: [Task] = {
-		return retrieveTaskFromUserDefaults()
+		return retrieveTasksFromFileSystem()
 	}()
 	
 	public func addTask(task: Task) {
 		tasks.append(task)
-		saveTasksToUserDefaults()
+		saveTasksToFileSystem()
 	}
 	public func removeTask(taskCreatedTime: Date) {
 		
@@ -115,13 +115,13 @@ open class TaskManager {
 		for (index, each) in tempTasks.enumerated() {
 			if each.createdTime == taskCreatedTime {
 				tasks.remove(at: index)
-				saveTasksToUserDefaults()
+				saveTasksToFileSystem()
 				break
 			}
 		}
 	}
 	
-	public func saveTasksToUserDefaults() {
+	public func saveTasksToFileSystem() {
 		
 		// save the data into file system
 		guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return }
@@ -138,7 +138,7 @@ open class TaskManager {
 		}
 	}
 	
-	public func retrieveTaskFromUserDefaults() -> [Task] {
+	public func retrieveTasksFromFileSystem() -> [Task] {
 		
 		// retrieve the data
 		guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return [] }
