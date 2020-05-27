@@ -9,6 +9,10 @@
 import Foundation
 import Intents
 
+public struct TaskRecords {
+	static public let lists = "lists"
+}
+
 // Model
 
 public enum PrimaryTaskType {
@@ -96,10 +100,13 @@ public struct Task {
 open class TaskManager {
 	public static let shared = TaskManager()
 	
-	public var tasks: [Task] = []
+	public lazy var tasks: [Task] = {
+		return retrieveTaskFromUserDefaults()
+	}()
 	
 	public func addTask(task: Task) {
 		tasks.append(task)
+		saveTasksToUserDefaults()
 	}
 	public func removeTask(taskCreatedTime: Date) {
 		
@@ -108,8 +115,63 @@ open class TaskManager {
 		for (index, each) in tempTasks.enumerated() {
 			if each.createdTime == taskCreatedTime {
 				tasks.remove(at: index)
+				saveTasksToUserDefaults()
 				break
 			}
 		}
+	}
+	
+	public func saveTasksToUserDefaults() {
+		
+		// save the data into file system
+		guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return }
+		let filePath = url.appendingPathComponent("tasks.txt")
+		print("filePath: \(filePath.absoluteString)")
+		
+		do {
+			// convert into data
+			let dictionaries = tasks.map { convertTaskIntoDictionary($0) }
+			let data = try JSONSerialization.data(withJSONObject: dictionaries, options: .prettyPrinted)
+			try data.write(to: filePath)
+		} catch let error {
+			print("could not write to data: \(error)")
+		}
+	}
+	
+	public func retrieveTaskFromUserDefaults() -> [Task] {
+		
+		// retrieve the data
+		guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last else { return [] }
+			let filePath = url.appendingPathComponent("tasks.txt")
+			print("filePath: \(filePath.absoluteString)")
+		
+		do {
+			// convert into data
+			let data = try Data(contentsOf: filePath, options: [])
+			if let dictionaries = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+				let tasks = dictionaries.map { convertDictionaryToObject($0) }
+				return tasks
+			}
+		} catch let error {
+			print("could not write to data: \(error)")
+		}
+		return []
+	}
+	
+	// this is needed to save a custom struct into Data
+	private func convertTaskIntoDictionary(_ task: Task) -> [String: Any] {
+		return [
+			"primary": task.primaryDescription,
+			"secondary": task.secondaryDescription,
+			"createTime":  task.createdTime.timeIntervalSince1970,
+			"performTime": task.performTime.timeIntervalSince1970
+		]
+	}
+	
+	private func convertDictionaryToObject(_ dict: [String: Any]) -> Task {
+		return Task(primaryDesc: dict["primary"] as? String ?? "",
+					secondaryDesc: dict["secondary"] as? String ?? "",
+					createTime: Date(timeIntervalSince1970: (dict["createTime"] as? Double ?? 0.0)),
+					performTime: Date(timeIntervalSince1970: dict["performTime"] as? Double ?? 0.0) )
 	}
 }
