@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551F3704247F687800D7413B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 551F3703247F687800D7413B /* Intents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
+		551F3705247F687800D7413B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 551F3703247F687800D7413B /* Intents.intentdefinition */; };
 		5551259B247CF3CE00B8F845 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EF0247A7675008BAD5C /* TaskManager.swift */; };
 		5551259F247CF82200B8F845 /* libTODOKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55512594247CF3C400B8F845 /* libTODOKit.a */; };
 		55514EDB2479800A008BAD5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EDA2479800A008BAD5C /* AppDelegate.swift */; };
@@ -20,13 +22,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		5551259C247CF44300B8F845 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55512593247CF3C400B8F845;
-			remoteInfo = TODOKit;
-		};
-		555125A0247CF82200B8F845 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
 			proxyType = 1;
@@ -48,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		551F3703247F687800D7413B /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		55512594247CF3C400B8F845 /* libTODOKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTODOKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		55514ED72479800A008BAD5C /* TODO-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TODO-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55514EDA2479800A008BAD5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				55514EF0247A7675008BAD5C /* TaskManager.swift */,
+				551F3703247F687800D7413B /* Intents.intentdefinition */,
 			);
 			path = TODOKit;
 			sourceTree = "<group>";
@@ -169,7 +166,6 @@
 			);
 			dependencies = (
 				5551259D247CF44300B8F845 /* PBXTargetDependency */,
-				555125A1247CF82200B8F845 /* PBXTargetDependency */,
 			);
 			name = "TODO-App";
 			productName = "TODO-App";
@@ -231,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551F3705247F687800D7413B /* Intents.intentdefinition in Sources */,
 				5551259B247CF3CE00B8F845 /* TaskManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +239,7 @@
 				55514EDF2479800A008BAD5C /* HistoryViewController.swift in Sources */,
 				55514EDB2479800A008BAD5C /* AppDelegate.swift in Sources */,
 				55514EEF24798EF7008BAD5C /* NewTaskViewController.swift in Sources */,
+				551F3704247F687800D7413B /* Intents.intentdefinition in Sources */,
 				55514EDD2479800A008BAD5C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,11 +251,6 @@
 			isa = PBXTargetDependency;
 			target = 55512593247CF3C400B8F845 /* TODOKit */;
 			targetProxy = 5551259C247CF44300B8F845 /* PBXContainerItemProxy */;
-		};
-		555125A1247CF82200B8F845 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55512593247CF3C400B8F845 /* TODOKit */;
-			targetProxy = 555125A0247CF82200B8F845 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
