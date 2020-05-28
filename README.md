@@ -37,3 +37,14 @@ Sub-task:
 4. How to maintain the business logic among primary code and Intents extension.
 
 
+## Define Intents:
+
+## Define Parameters:
+
+## Define Siri Shortcuts options combination:
+
+## Response:
+
+# How to solve Resolve - Confirm - Handle?
+
+
