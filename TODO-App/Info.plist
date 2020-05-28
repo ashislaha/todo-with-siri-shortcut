@@ -64,5 +64,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-</dict>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>com.myapp.name.todo-task-activity</string>
+	</array></dict>
 </plist>
