@@ -406,7 +406,7 @@
 				</dict>
 			</dict>
 			<key>INIntentName</key>
-			<string>CreateTask</string>
+			<string>TODO</string>
 			<key>INIntentParameterCombinations</key>
 			<dict>
 				<key>primaryTask</key>
@@ -927,7 +927,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>Create Task</string>
+			<string>Do a Task</string>
 			<key>INIntentTitleID</key>
 			<string>ZnnO0t</string>
 			<key>INIntentType</key>

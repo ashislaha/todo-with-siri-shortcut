@@ -22,7 +22,7 @@
 	<true/>
 	<key>NSUserActivityTypes</key>
 	<array>
-		<string>CreateTaskIntent</string>
+		<string>TODOIntent</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
