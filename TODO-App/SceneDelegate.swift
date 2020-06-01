@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TODOKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -60,7 +61,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-		print(userActivity.userInfo ?? [:])
+		if userActivity.activityType == "com.myapp.name.todo-task-activity",
+			let _ = userActivity.userInfo as? [String: String] {
+			print(userActivity.userInfo ?? [:])
+			//return true
+		}
+		else if userActivity.activityType == "TODOIntent", let _ = userActivity.interaction?.intent as? TODOIntent{
+			print(userActivity.activityType)
+			
+		}
 	}
 }
 
