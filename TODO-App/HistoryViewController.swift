@@ -18,6 +18,7 @@ class HistoryViewController: UITableViewController {
 		
 		
 		tableView.tableFooterView = UIView()
+		activateActivity()
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
@@ -30,7 +31,18 @@ class HistoryViewController: UITableViewController {
 		print("create a new task")
 	}
 }
-
+//function for donating shortcut
+extension HistoryViewController {
+	func activateActivity() {
+		userActivity=NSUserActivity(activityType: "com.myapp.name.todo-task-activity")
+		userActivity?.isEligibleForSearch=true
+		userActivity?.isEligibleForPrediction=true
+		userActivity?.title = "Task History"
+		userActivity?.userInfo=["key":"value"]
+		userActivity?.suggestedInvocationPhrase="show me the tasks to do"
+		userActivity?.becomeCurrent()
+	}
+}
 // UITableViewDataSource
 extension HistoryViewController {
 	override func numberOfSections(in tableView: UITableView) -> Int {
