@@ -92,10 +92,16 @@ public struct Task {
 	
 	// define intent here
 	// every task should be associated with an TaskIntent - will be created later.
-	public var intent: INIntent {
-		return INIntent()
+	public var intent: TODOIntent {
+			let TODOTaskIntent=TODOIntent()
+			let PrimarytaskType:PrimaryTask = .coding
+			TODOTaskIntent.primaryTask=PrimarytaskType
+			TODOTaskIntent.coding = .objectiveC
+			return TODOTaskIntent
+		}
 	}
-}
+
+
 
 open class TaskManager {
 	public static let shared = TaskManager()

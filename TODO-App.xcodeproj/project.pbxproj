@@ -46,13 +46,6 @@
 			remoteGlobalIDString = 551F3709247FA4BD00D7413B;
 			remoteInfo = TODOIntents;
 		};
-		551F372E247FB70400D7413B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55512593247CF3C400B8F845;
-			remoteInfo = TODOKit;
-		};
 		551F3731247FB71500D7413B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
@@ -264,7 +257,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				551F372F247FB70400D7413B /* PBXTargetDependency */,
 				551F3732247FB71500D7413B /* PBXTargetDependency */,
 			);
 			name = TODOIntents;
@@ -455,11 +447,6 @@
 			isa = PBXTargetDependency;
 			target = 551F3709247FA4BD00D7413B /* TODOIntents */;
 			targetProxy = 551F3720247FA4BD00D7413B /* PBXContainerItemProxy */;
-		};
-		551F372F247FB70400D7413B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55512593247CF3C400B8F845 /* TODOKit */;
-			targetProxy = 551F372E247FB70400D7413B /* PBXContainerItemProxy */;
 		};
 		551F3732247FB71500D7413B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
