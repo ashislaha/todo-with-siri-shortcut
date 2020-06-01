@@ -79,9 +79,17 @@ class NewTaskViewController: UIViewController {
 						createTime: Date(),
 						performTime: Date())
 		TaskManager.shared.addTask(task: task)
-		navigationController?.popViewController(animated: true)
-	}
-	
+		
+		//Donate an interaction to the system
+			let interaction=INInteraction(intent: task.intent, response: nil)
+			interaction.donate{ (error) in
+				if let error=error{
+					print("Did Fail: \(error.localizedDescription)")
+				}
+			}
+			
+			navigationController?.popViewController(animated: true)
+		}
 	// MARK:- Private methods
 	
 	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [String] = []) {

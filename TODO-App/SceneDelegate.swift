@@ -18,6 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let _ = (scene as? UIWindowScene) else { return }
+		
+		// activity with unique_id
+		let userActivities = connectionOptions.userActivities
+		for each in userActivities {
+			if each.activityType == "com.myapp.name.todo-task-activity" {
+				
+				// retrieve info dictionary
+				print("here")
+				print(each.userInfo ?? [:])
+			}
+		}
 	}
 
 	func sceneDidDisconnect(_ scene: UIScene) {
@@ -48,6 +59,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// to restore the scene back to its current state.
 	}
 
-
+	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+		print(userActivity.userInfo ?? [:])
+	}
 }
 
