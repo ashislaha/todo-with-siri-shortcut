@@ -183,11 +183,20 @@ public struct Task {
 		
 		// mapped the primaryTask to intent Int enum
 		switch primary {
-		case .coding(_): taskIntent.primaryTask = .coding
-		case .listening(_): taskIntent.primaryTask = .listening
-		case .studying(_): taskIntent.primaryTask = .studying
-		case .playing(_): taskIntent.primaryTask = .playing
-		case .none: taskIntent.primaryTask = .unknown
+		case .coding(_):
+			taskIntent.primaryTask = .coding
+			taskIntent.setImage(INImage(named: "coding"), forParameterNamed: \TODOIntent.coding)
+		case .listening(_):
+			taskIntent.primaryTask = .listening
+			taskIntent.setImage(INImage(named: "listening"), forParameterNamed: \TODOIntent.listening)
+		case .studying(_):
+			taskIntent.primaryTask = .studying
+			taskIntent.setImage(INImage(named: "studying"), forParameterNamed: \TODOIntent.studying)
+		case .playing(_):
+			taskIntent.primaryTask = .playing
+			taskIntent.setImage(INImage(named: "game"), forParameterNamed: \TODOIntent.playing)
+		case .none:
+			taskIntent.primaryTask = .unknown
 		}
 		
 		switch secondary {
@@ -201,7 +210,6 @@ public struct Task {
 			taskIntent.coding = CodingLanguage(rawValue: secondary.raw) ?? CodingLanguage.unknown
 		default: break
 		}
-		
 		return taskIntent
 	}
 }

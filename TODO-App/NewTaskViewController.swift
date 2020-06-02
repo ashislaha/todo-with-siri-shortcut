@@ -8,7 +8,7 @@
 
 import UIKit
 import TODOKit
-import IntentsUI
+import Intents
 
 class NewTaskViewController: UIViewController {
 
@@ -42,8 +42,7 @@ class NewTaskViewController: UIViewController {
 	// MARK:- ViewController life cycle
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
-		addSiriShortCutButton()
+
     }
 	
 	// MARK:- Actions
@@ -122,66 +121,5 @@ class NewTaskViewController: UIViewController {
 		alertController.addAction(cancelAction)
 		present(alertController, animated: true, completion: nil)
 	}
-	
-	private func addSiriShortCutButton() {
-		
-		guard let secondary = secondaryTask else { return }
-		let task = Task(primary: currentTask,
-						secondary: secondary,
-						createTime: Date(),
-						performTime: Date(),
-						primaryDescription: currentTask.getTitle(),
-						secondaryDescription: secondary.getTitle())
-						
-		let addToSiriButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
-		addToSiriButton.shortcut = INShortcut(intent: task.intent)
-		addToSiriButton.delegate = self
-		
-		addToSiriButton.translatesAutoresizingMaskIntoConstraints = false
-		addToSiriView.addSubview(addToSiriButton)
-		NSLayoutConstraint.activate([
-			addToSiriButton.centerXAnchor.constraint(equalTo: addToSiriView.centerXAnchor),
-			addToSiriButton.centerYAnchor.constraint(equalTo: addToSiriView.centerYAnchor)
-		])
-	}
 }
 
-// MARK:- INUIAddVoiceShortcutButtonDelegate
-extension NewTaskViewController: INUIAddVoiceShortcutButtonDelegate {
-	func present(_ addVoiceShortcutViewController: INUIAddVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
-		addVoiceShortcutViewController.delegate = self
-		present(addVoiceShortcutViewController, animated: true, completion: nil)
-	}
-	
-	func present(_ editVoiceShortcutViewController: INUIEditVoiceShortcutViewController, for addVoiceShortcutButton: INUIAddVoiceShortcutButton) {
-		editVoiceShortcutViewController.delegate = self
-		present(editVoiceShortcutViewController, animated: true, completion: nil)
-	}
-}
-
-// MARK:- INUIAddVoiceShortcutViewControllerDelegate
-extension NewTaskViewController: INUIAddVoiceShortcutViewControllerDelegate {
-	func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
-		
-	}
-	
-	func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
-		
-	}
-}
-
-
-// MARK:- INUIEditVoiceShortcutViewControllerDelegate
-extension NewTaskViewController: INUIEditVoiceShortcutViewControllerDelegate {
-	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
-		
-	}
-	
-	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
-		
-	}
-	
-	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
-		
-	}
-}
