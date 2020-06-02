@@ -21,8 +21,6 @@ public struct Constants {
 	}
 }
 
-// Model
-
 public enum TaskType: Equatable {
 	case primary
 	case secondary
@@ -183,11 +181,20 @@ public struct Task {
 		
 		// mapped the primaryTask to intent Int enum
 		switch primary {
-		case .coding(_): taskIntent.primaryTask = .coding
-		case .listening(_): taskIntent.primaryTask = .listening
-		case .studying(_): taskIntent.primaryTask = .studying
-		case .playing(_): taskIntent.primaryTask = .playing
-		case .none: taskIntent.primaryTask = .unknown
+		case .coding(_):
+			taskIntent.primaryTask = .coding
+			taskIntent.setImage(INImage(named: "coding"), forParameterNamed: \TODOIntent.coding)
+		case .listening(_):
+			taskIntent.primaryTask = .listening
+			taskIntent.setImage(INImage(named: "listening"), forParameterNamed: \TODOIntent.listening)
+		case .studying(_):
+			taskIntent.primaryTask = .studying
+			taskIntent.setImage(INImage(named: "studying"), forParameterNamed: \TODOIntent.studying)
+		case .playing(_):
+			taskIntent.primaryTask = .playing
+			taskIntent.setImage(INImage(named: "game"), forParameterNamed: \TODOIntent.playing)
+		case .none:
+			taskIntent.primaryTask = .unknown
 		}
 		
 		switch secondary {
@@ -201,8 +208,63 @@ public struct Task {
 			taskIntent.coding = CodingLanguage(rawValue: secondary.raw) ?? CodingLanguage.unknown
 		default: break
 		}
-		
 		return taskIntent
+	}
+	
+	/// createTask(fromIntent: Intent)
+	/// this method will create a Task from Intents
+	public static func createTask(from intent: TODOIntent) -> Task? {
+	
+		// retrive the secondary task based on it's value
+		var secondary: SecondaryTaskType?
+		if intent.coding != .unknown {
+			secondary = intent.coding
+		} else if intent.listening != .unknown {
+			secondary = intent.listening
+		} else if intent.playing != .unknown {
+			secondary = intent.playing
+		} else if intent.studying != .unknown {
+			secondary = intent.studying
+		}
+		
+		guard let secondaryTask = secondary else {
+			print("Secondary Task is missing: Unable to create the task")
+			return nil
+		}
+		
+		// construct the primary task
+		var primaryTask: PrimaryTaskType = .none
+		switch intent.primaryTask {
+		case .coding:
+			if let language = CodingLanguage(rawValue: secondaryTask.raw) {
+				primaryTask = .coding([language])
+			}
+			
+		case .listening:
+			if let album = Album(rawValue: secondaryTask.raw) {
+				primaryTask = .listening([album])
+			}
+			
+		case .playing:
+			if let game = Game(rawValue: secondaryTask.raw) {
+				primaryTask = .playing([game])
+			}
+			
+		case .studying:
+			if let author = BookAuthor(rawValue: secondaryTask.raw) {
+				primaryTask = .studying([author])
+			}
+			
+		default:
+			return nil
+		}
+		
+		return Task(primary: primaryTask,
+					secondary: secondaryTask,
+					createTime: Date(),
+					performTime: Date(),
+					primaryDescription: primaryTask.getTitle(),
+					secondaryDescription: secondaryTask.getTitle())
 	}
 }
 

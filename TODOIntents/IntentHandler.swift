@@ -13,7 +13,7 @@ class IntentHandler: INExtension {
     
     override func handler(for intent: INIntent) -> Any {
 		
-		guard intent is TODOIntentsHandler else {
+		guard intent is TODOIntent else {
 			fatalError("unhandled intent type: \(intent)")
 		}
 		return TODOIntentsHandler()
