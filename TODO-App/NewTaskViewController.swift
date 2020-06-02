@@ -23,7 +23,7 @@ class NewTaskViewController: UIViewController {
 		}
 	}
 	
-	private var currentSubTask: SecondaryTaskType = .none
+	private var secondaryTask: SecondaryTaskType?
 	
 	// MARK:- Outlets
 	@IBOutlet weak var taskTypeResult: UILabel!
@@ -49,50 +49,49 @@ class NewTaskViewController: UIViewController {
 	// MARK:- Actions
 	@IBAction func tapChooseTask(_ sender: UIButton) {
 		
-		let primaryTypes: [PrimaryTaskType] = [.listening, .playing, .studying, .coding]
-		showActionSheet(taskType: .primary, primaryTypes: primaryTypes)
+		showActionSheet(taskType: .primary, primaryTypes: TaskManager.shared.taskList)
 	}
 	
 	@IBAction func tapSubTask(_ sender: UIButton) {
-		guard currentTask != .none else { return }
 		
-		switch currentTask.mappedToSubTask() {
-		case .none: break
-		case .albums(let colletion): showActionSheet(taskType: .secondary, secondaryOptions: colletion)
-		case .books(let names): showActionSheet(taskType: .secondary, secondaryOptions: names)
+		guard currentTask != PrimaryTaskType.none else { return }
+		
+		switch currentTask {
 		case .coding(let languages): showActionSheet(taskType: .secondary, secondaryOptions: languages)
-		case .games(let list): showActionSheet(taskType: .secondary, secondaryOptions: list)
+		case .listening(let albums): showActionSheet(taskType: .secondary, secondaryOptions: albums)
+		case .playing(let games): showActionSheet(taskType: .secondary, secondaryOptions: games)
+		case .studying(let authors): showActionSheet(taskType: .secondary, secondaryOptions: authors)
+		default: break
 		}
 	}
 	
 	@IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
 		
-		guard let primaryDescription = taskTypeResult.text, !primaryDescription.isEmpty,
-			let secondaryDescription = secondaryTaskTypeResult.text, !secondaryDescription.isEmpty
-			else {
-				return
-		}
+		guard currentTask != .none, let secondary = secondaryTask else { return }
 		
 		// create a new task with primary task, secondary task and date & time
-		let task = Task(primaryDesc: primaryDescription,
-						secondaryDesc: secondaryDescription,
+		let task = Task(primary: currentTask,
+						secondary: secondary,
 						createTime: Date(),
-						performTime: Date())
+						performTime: Date(),
+						primaryDescription: currentTask.getTitle(),
+						secondaryDescription: secondary.getTitle())
+		
 		TaskManager.shared.addTask(task: task)
 		
-		//Donate an interaction to the system
-			let interaction=INInteraction(intent: task.intent, response: nil)
-			interaction.donate{ (error) in
-				if let error=error{
-					print("Did Fail: \(error.localizedDescription)")
-				}
+		// Donate an interaction to the system
+		let interaction = INInteraction(intent: task.intent, response: nil)
+		interaction.donate { (error) in
+			if let error = error {
+				print("failed to donate: \(error.localizedDescription)")
 			}
-			
-			navigationController?.popViewController(animated: true)
 		}
+		navigationController?.popViewController(animated: true)
+	}
+	
 	// MARK:- Private methods
 	
-	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [String] = []) {
+	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [SecondaryTaskType] = []) {
 		
 		let title = taskType == .primary ? "Choose a task": "Choose a sub-task"
 		let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
@@ -110,9 +109,10 @@ class NewTaskViewController: UIViewController {
 		} else { // secondary
 			
 			for each in secondaryOptions {
-				let alertAction = UIAlertAction(title: each, style: .default) { (action) in
+				let alertAction = UIAlertAction(title: each.getTitle(), style: .default) { (action) in
 					self.secondaryTaskTypeResult.isHidden = false
-					self.secondaryTaskTypeResult.text = each
+					self.secondaryTaskTypeResult.text = each.getTitle()
+					self.secondaryTask = each
 				}
 				alertController.addAction(alertAction)
 			}
@@ -125,10 +125,14 @@ class NewTaskViewController: UIViewController {
 	
 	private func addSiriShortCutButton() {
 		
-		let task = Task(primaryDesc: "none",
-						secondaryDesc: "none",
+		guard let secondary = secondaryTask else { return }
+		let task = Task(primary: currentTask,
+						secondary: secondary,
 						createTime: Date(),
-						performTime: Date())
+						performTime: Date(),
+						primaryDescription: currentTask.getTitle(),
+						secondaryDescription: secondary.getTitle())
+						
 		let addToSiriButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
 		addToSiriButton.shortcut = INShortcut(intent: task.intent)
 		addToSiriButton.delegate = self
