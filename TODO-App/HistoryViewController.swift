@@ -33,8 +33,9 @@ class HistoryViewController: UITableViewController {
 }
 //function for donating shortcut
 extension HistoryViewController {
+	
 	func activateActivity() {
-		userActivity=NSUserActivity(activityType: "com.myapp.name.todo-task-activity")
+		userActivity = NSUserActivity(activityType: "com.myapp.name.todo-task-activity")
 		userActivity?.isEligibleForSearch=true
 		userActivity?.isEligibleForPrediction=true
 		userActivity?.title = "Task History"
@@ -57,8 +58,8 @@ extension HistoryViewController {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		
 		let task = TaskManager.shared.tasks[indexPath.row]
-		cell.textLabel?.text = "Task \(indexPath.row + 1): \(task.primaryDescription)"
-		cell.detailTextLabel?.text = task.secondaryDescription
+		cell.textLabel?.text = "Task \(indexPath.row + 1): \(task.primaryTaskDescription)"
+		cell.detailTextLabel?.text = task.secondaryTaskDescription
 		return cell
 	}
 }

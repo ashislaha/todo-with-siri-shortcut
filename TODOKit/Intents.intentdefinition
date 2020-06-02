@@ -69,13 +69,13 @@
 		</dict>
 		<dict>
 			<key>INEnumDisplayName</key>
-			<string>Listening</string>
+			<string>Album</string>
 			<key>INEnumDisplayNameID</key>
 			<string>XXs9ln</string>
 			<key>INEnumGeneratesHeader</key>
 			<true/>
 			<key>INEnumName</key>
-			<string>ListeningSubTask</string>
+			<string>Album</string>
 			<key>INEnumType</key>
 			<string>Regular</string>
 			<key>INEnumValues</key>
@@ -132,13 +132,13 @@
 		</dict>
 		<dict>
 			<key>INEnumDisplayName</key>
-			<string>Game Name</string>
+			<string>Game</string>
 			<key>INEnumDisplayNameID</key>
 			<string>lA6Xja</string>
 			<key>INEnumGeneratesHeader</key>
 			<true/>
 			<key>INEnumName</key>
-			<string>PlayingSubTask</string>
+			<string>Game</string>
 			<key>INEnumType</key>
 			<string>Regular</string>
 			<key>INEnumValues</key>
@@ -195,13 +195,13 @@
 		</dict>
 		<dict>
 			<key>INEnumDisplayName</key>
-			<string>Studying</string>
+			<string>Book Author</string>
 			<key>INEnumDisplayNameID</key>
 			<string>CiCDYq</string>
 			<key>INEnumGeneratesHeader</key>
 			<true/>
 			<key>INEnumName</key>
-			<string>StudyingSubTask</string>
+			<string>BookAuthor</string>
 			<key>INEnumType</key>
 			<string>Regular</string>
 			<key>INEnumValues</key>
@@ -254,7 +254,7 @@
 			<key>INEnumGeneratesHeader</key>
 			<true/>
 			<key>INEnumName</key>
-			<string>CodingSubTask</string>
+			<string>CodingLanguage</string>
 			<key>INEnumType</key>
 			<string>Regular</string>
 			<key>INEnumValues</key>
@@ -325,7 +325,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>WyMQQ2</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18G103</string>
+	<string>19E287</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>11E503a</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -536,7 +536,7 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>2</integer>
 					<key>INIntentParameterEnumType</key>
-					<string>ListeningSubTask</string>
+					<string>Album</string>
 					<key>INIntentParameterEnumTypeNamespace</key>
 					<string>WyMQQ2</string>
 					<key>INIntentParameterName</key>
@@ -604,7 +604,7 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>3</integer>
 					<key>INIntentParameterEnumType</key>
-					<string>PlayingSubTask</string>
+					<string>Game</string>
 					<key>INIntentParameterEnumTypeNamespace</key>
 					<string>WyMQQ2</string>
 					<key>INIntentParameterName</key>
@@ -672,7 +672,7 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>4</integer>
 					<key>INIntentParameterEnumType</key>
-					<string>StudyingSubTask</string>
+					<string>BookAuthor</string>
 					<key>INIntentParameterEnumTypeNamespace</key>
 					<string>WyMQQ2</string>
 					<key>INIntentParameterName</key>
@@ -740,7 +740,7 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>5</integer>
 					<key>INIntentParameterEnumType</key>
-					<string>CodingSubTask</string>
+					<string>CodingLanguage</string>
 					<key>INIntentParameterEnumTypeNamespace</key>
 					<string>WyMQQ2</string>
 					<key>INIntentParameterName</key>
@@ -859,16 +859,12 @@
 						<string>jtXqZT</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>2</integer>
-						<key>INIntentResponseParameterEnumType</key>
-						<string>ListeningSubTask</string>
-						<key>INIntentResponseParameterEnumTypeNamespace</key>
-						<string>WyMQQ2</string>
 						<key>INIntentResponseParameterName</key>
 						<string>listening</string>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterType</key>
-						<string>Integer</string>
+						<string>String</string>
 					</dict>
 					<dict>
 						<key>INIntentResponseParameterDisplayName</key>
@@ -878,7 +874,7 @@
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>3</integer>
 						<key>INIntentResponseParameterEnumType</key>
-						<string>PlayingSubTask</string>
+						<string>Game</string>
 						<key>INIntentResponseParameterEnumTypeNamespace</key>
 						<string>WyMQQ2</string>
 						<key>INIntentResponseParameterName</key>
@@ -896,7 +892,7 @@
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterEnumType</key>
-						<string>StudyingSubTask</string>
+						<string>BookAuthor</string>
 						<key>INIntentResponseParameterEnumTypeNamespace</key>
 						<string>WyMQQ2</string>
 						<key>INIntentResponseParameterName</key>
@@ -914,7 +910,7 @@
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>5</integer>
 						<key>INIntentResponseParameterEnumType</key>
-						<string>CodingSubTask</string>
+						<string>CodingLanguage</string>
 						<key>INIntentResponseParameterEnumTypeNamespace</key>
 						<string>WyMQQ2</string>
 						<key>INIntentResponseParameterName</key>

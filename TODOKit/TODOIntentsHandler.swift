@@ -11,27 +11,30 @@ import Intents
 
 public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 	
-	public func handle(intent: TODOIntent, completion: @escaping (TODOIntentResponse) -> Void) {
-		
-	}
-	
+	// Resolve & confirm
 	public func resolvePrimaryTask(for intent: TODOIntent, with completion: @escaping (PrimaryTaskResolutionResult) -> Void) {
 		
 	}
 	
-	public func resolveListening(for intent: TODOIntent, with completion: @escaping (ListeningSubTaskResolutionResult) -> Void) {
+	public func resolveListening(for intent: TODOIntent, with completion: @escaping (AlbumResolutionResult) -> Void) {
 		
 	}
 	
-	public func resolvePlaying(for intent: TODOIntent, with completion: @escaping (PlayingSubTaskResolutionResult) -> Void) {
+	public func resolvePlaying(for intent: TODOIntent, with completion: @escaping (GameResolutionResult) -> Void) {
 		
 	}
 	
-	public func resolveStudying(for intent: TODOIntent, with completion: @escaping (StudyingSubTaskResolutionResult) -> Void) {
+	public func resolveStudying(for intent: TODOIntent, with completion: @escaping (BookAuthorResolutionResult) -> Void) {
 		
 	}
 	
-	public func resolveCoding(for intent: TODOIntent, with completion: @escaping (CodingSubTaskResolutionResult) -> Void) {
+	public func resolveCoding(for intent: TODOIntent, with completion: @escaping (CodingLanguageResolutionResult) -> Void) {
+		
+	}
+	
+	
+	// Handle
+	public func handle(intent: TODOIntent, completion: @escaping (TODOIntentResponse) -> Void) {
 		
 	}
 }
