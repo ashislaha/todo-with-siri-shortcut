@@ -46,12 +46,15 @@ extension HistoryViewController {
 	
 	private func addSiriShortCutButtonIfNeeded(task: Task, cell: UITableViewCell) {
 		
-		guard task.primary != .none else { return }
+		guard task.primary != .none else {
+			cell.accessoryView = nil
+			return
+		}
 		
 		let addToSiriButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
 		addToSiriButton.shortcut = INShortcut(intent: task.intent)
 		addToSiriButton.delegate = self
-		addToSiriButton.frame = CGRect(x: 0, y: 0, width: 160, height: 40)
+		addToSiriButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
 		cell.accessoryView = addToSiriButton
 	}
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TODOKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -61,6 +62,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 		print(userActivity.userInfo ?? [:])
+		
+		guard let intent = userActivity.interaction?.intent as? TODOIntent,
+			let task = Task.createTask(from: intent) else { return }
+		
+		// this will add a new task and override the existing tasks
+		// it should be append, instead of overriding the existing tasks
+		// TODO:- fix it later
+		TaskManager.shared.addTask(task: task)
+		
+		// show an alert that a new task is created
+		/*
+		let alert = UIAlertController(title: "New Task Created", message: nil, preferredStyle: .alert)
+		let okayAction = UIAlertAction(title: "Okay", style: .default) { (action) in
+			alert.dismiss(animated: true, completion: nil)
+		}
+		alert.addAction(okayAction)
+		*/
 	}
 }
 

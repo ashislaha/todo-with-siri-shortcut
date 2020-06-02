@@ -29,6 +29,9 @@
 		55514EE424798011008BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE324798011008BAD5C /* Assets.xcassets */; };
 		55514EE724798011008BAD5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE524798011008BAD5C /* LaunchScreen.storyboard */; };
 		55514EEF24798EF7008BAD5C /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */; };
+		558943CB2486A387004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
+		558943CC2486A387004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
+		558943CD2486A47D004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +125,7 @@
 		55514EE824798011008BAD5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		55514EF0247A7675008BAD5C /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		558943CA2486A387004D98D9 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +199,7 @@
 				55514EF0247A7675008BAD5C /* TaskManager.swift */,
 				551F3703247F687800D7413B /* Intents.intentdefinition */,
 				551F372C247FB17B00D7413B /* TODOIntentsHandler.swift */,
+				558943CA2486A387004D98D9 /* Shared.xcassets */,
 			);
 			path = TODOKit;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558943CB2486A387004D98D9 /* Shared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558943CC2486A387004D98D9 /* Shared.xcassets in Resources */,
 				551F371B247FA4BD00D7413B /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +395,7 @@
 			files = (
 				55514EE724798011008BAD5C /* LaunchScreen.storyboard in Resources */,
 				55514EE424798011008BAD5C /* Assets.xcassets in Resources */,
+				558943CD2486A47D004D98D9 /* Shared.xcassets in Resources */,
 				55514EE22479800A008BAD5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
