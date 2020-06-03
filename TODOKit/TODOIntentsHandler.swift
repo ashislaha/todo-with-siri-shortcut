@@ -64,10 +64,23 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 		// the user confirmed the primary and secondary task, let's create the "Task" object and add to TaskManager list
 		if let task = Task.createTask(from: intent) {
 			TaskManager.shared.addTask(task: task)
-			completion(TODOIntentResponse.success(primary: intent.primaryTask))
+			
+			// update useractivity
+			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskActivityType)
+			userActivity.addUserInfoEntries(from: ["DidCreatedTask": true])
+			
+			let response = TODOIntentResponse.success(primary: intent.primaryTask)
+			response.userActivity = userActivity
+			completion(response)
+			
 		} else {
 			// there is some error to create a task
-			completion(TODOIntentResponse.failure(primary: intent.primaryTask))
+			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskActivityType)
+			userActivity.addUserInfoEntries(from: ["DidCreatedTask": false])
+			
+			let response = TODOIntentResponse.failure(primary: intent.primaryTask)
+			response.userActivity = userActivity
+			completion(response)
 		}
 	}
 }
