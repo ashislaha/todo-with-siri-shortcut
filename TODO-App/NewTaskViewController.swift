@@ -48,7 +48,7 @@ class NewTaskViewController: UIViewController {
 	// MARK:- Actions
 	@IBAction func tapChooseTask(_ sender: UIButton) {
 		
-		showActionSheet(taskType: .primary, primaryTypes: TaskManager.shared.taskList)
+		showActionSheet(taskType: .primary, primaryTypes: TaskManager.shared.taskList, sender: sender)
 	}
 	
 	@IBAction func tapSubTask(_ sender: UIButton) {
@@ -56,10 +56,10 @@ class NewTaskViewController: UIViewController {
 		guard currentTask != PrimaryTaskType.none else { return }
 		
 		switch currentTask {
-		case .coding(let languages): showActionSheet(taskType: .secondary, secondaryOptions: languages)
-		case .listening(let albums): showActionSheet(taskType: .secondary, secondaryOptions: albums)
-		case .playing(let games): showActionSheet(taskType: .secondary, secondaryOptions: games)
-		case .studying(let authors): showActionSheet(taskType: .secondary, secondaryOptions: authors)
+		case .coding(let languages): showActionSheet(taskType: .secondary, secondaryOptions: languages, sender: sender)
+		case .listening(let albums): showActionSheet(taskType: .secondary, secondaryOptions: albums, sender: sender)
+		case .playing(let games): showActionSheet(taskType: .secondary, secondaryOptions: games, sender: sender)
+		case .studying(let authors): showActionSheet(taskType: .secondary, secondaryOptions: authors, sender: sender)
 		default: break
 		}
 	}
@@ -90,10 +90,17 @@ class NewTaskViewController: UIViewController {
 	
 	// MARK:- Private methods
 	
-	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [SecondaryTaskType] = []) {
+	private func showActionSheet(taskType: TaskType, primaryTypes: [PrimaryTaskType] = [], secondaryOptions: [SecondaryTaskType] = [], sender: UIButton) {
 		
 		let title = taskType == .primary ? "Choose a task": "Choose a sub-task"
 		let alertController = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+		
+		if let popoverVC = alertController.popoverPresentationController {
+			alertController.modalPresentationStyle = .popover
+			popoverVC.sourceView = sender
+		}
+		
+		
 		
 		if taskType == .primary {
 			

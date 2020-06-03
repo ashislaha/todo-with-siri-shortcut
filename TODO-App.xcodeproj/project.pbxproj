@@ -63,13 +63,6 @@
 			remoteGlobalIDString = 55512593247CF3C400B8F845;
 			remoteInfo = TODOKit;
 		};
-		551F3736247FB73100D7413B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55512593247CF3C400B8F845;
-			remoteInfo = TODOKit;
-		};
 		5551259C247CF44300B8F845 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
@@ -281,7 +274,6 @@
 			);
 			dependencies = (
 				551F3734247FB72300D7413B /* PBXTargetDependency */,
-				551F3737247FB73100D7413B /* PBXTargetDependency */,
 			);
 			name = TODOIntentsUI;
 			productName = TODOIntentsUI;
@@ -465,11 +457,6 @@
 			isa = PBXTargetDependency;
 			target = 55512593247CF3C400B8F845 /* TODOKit */;
 			targetProxy = 551F3733247FB72300D7413B /* PBXContainerItemProxy */;
-		};
-		551F3737247FB73100D7413B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55512593247CF3C400B8F845 /* TODOKit */;
-			targetProxy = 551F3736247FB73100D7413B /* PBXContainerItemProxy */;
 		};
 		5551259D247CF44300B8F845 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
