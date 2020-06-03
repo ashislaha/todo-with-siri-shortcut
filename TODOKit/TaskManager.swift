@@ -12,12 +12,16 @@ import Intents
 public struct Constants {
 	
 	public struct Task {
-		static let primary = "primary"
-		static let secondary = "secondary"
-		static let createTime = "createTime"
-		static let performTime = "performTime"
-		static let primaryTaskDescription = "primaryTaskDescription"
-		static let secondaryTaskDescription = "secondaryTaskDescription"
+		public static let primary = "primary"
+		public static let secondary = "secondary"
+		public static let createTime = "createTime"
+		public static let performTime = "performTime"
+		public static let primaryTaskDescription = "primaryTaskDescription"
+		public static let secondaryTaskDescription = "secondaryTaskDescription"
+	}
+	
+	public struct UserActivity {
+		public static let createTaskActivityType = "com.todo.list.createTask"
 	}
 }
 

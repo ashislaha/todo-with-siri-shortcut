@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TODOKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,15 +32,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
 		// Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 	}
-	func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+	func application(_ application: UIApplication,
+					 continue userActivity: NSUserActivity,
+					 restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
 		
-		if userActivity.activityType == "com.myapp.name.todo-task-activity",
-			let _ = userActivity.userInfo as? [String: String] {
-			
-			
-			return true
-		}
-		return false
+		guard userActivity.activityType == Constants.UserActivity.createTaskActivityType,
+			let _ = userActivity.userInfo as? [String: String] else { return false }
+		
+		// handle the acitivity
+		
+		return true
 	}
 
 }
