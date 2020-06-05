@@ -70,6 +70,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// it should be append, instead of overriding the existing tasks
 		// TODO:- fix it later
 		TaskManager.shared.addTask(task: task)
+		//guard let historyVC = (scene as? UIWindowScene) else { return }
+		if let historyVC = (scene as? UIWindowScene)?.windows.first?.rootViewController as? HistoryViewController {
+			print("here")
+			historyVC.showNewCreatedTaskView(intent: intent)
+			
+		}
+		//if historyVC.
+		
+		
 		
 		// show an alert that a new task is created
 		/*

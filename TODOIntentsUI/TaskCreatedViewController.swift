@@ -59,4 +59,5 @@ class TaskCreatedViewController: UIViewController {
 class TaskCreatedView: UIView {
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var message: UILabel!
+	
 }

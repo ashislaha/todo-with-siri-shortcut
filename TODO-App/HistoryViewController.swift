@@ -12,13 +12,20 @@ import IntentsUI
 
 class HistoryViewController: UITableViewController {
 
-	// MARK:- View Controller life cycle
 	
+	// public method
+	public func showNewCreatedTaskView(intent: TODOIntent) {
+		_ = TaskCompletedViewController(for: intent)
+	}
+	
+	
+	// MARK:- View Controller life cycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		//completedView.vi
 		tableView.tableFooterView = UIView()
 		activateActivity()
+		
 	}
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
