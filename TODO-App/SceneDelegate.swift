@@ -15,23 +15,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-		// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-		// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-		// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 		guard let _ = (scene as? UIWindowScene) else { return }
+	}
+	
+	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 		
-		// activity with unique_id
-		let userActivities = connectionOptions.userActivities
-		for each in userActivities {
-			if each.activityType == "com.myapp.name.todo-task-activity" {
-				
-				// retrieve info dictionary
-				print("here")
-				print(each.userInfo ?? [:])
-			}
+		guard let intent = userActivity.interaction?.intent as? TODOIntent,
+			let task = Task.createTask(from: intent) else { return }
+		
+		TaskManager.shared.addTask(task: task)
+		
+		if let windowScene = scene as? UIWindowScene,
+			let navigationVC = windowScene.windows.first?.rootViewController as? UINavigationController,
+			let historyVC = navigationVC.viewControllers.first as? HistoryViewController {
+			
+			historyVC.addedNewTask(task: task)
 		}
 	}
-
+	
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.
 		// This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -58,27 +59,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		// Called as the scene transitions from the foreground to the background.
 		// Use this method to save data, release shared resources, and store enough scene-specific state information
 		// to restore the scene back to its current state.
-	}
-
-	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-		print(userActivity.userInfo ?? [:])
-		
-		guard let intent = userActivity.interaction?.intent as? TODOIntent,
-			let task = Task.createTask(from: intent) else { return }
-		
-		// this will add a new task and override the existing tasks
-		// it should be append, instead of overriding the existing tasks
-		// TODO:- fix it later
-		TaskManager.shared.addTask(task: task)
-		
-		// show an alert that a new task is created
-		/*
-		let alert = UIAlertController(title: "New Task Created", message: nil, preferredStyle: .alert)
-		let okayAction = UIAlertAction(title: "Okay", style: .default) { (action) in
-			alert.dismiss(animated: true, completion: nil)
-		}
-		alert.addAction(okayAction)
-		*/
 	}
 }
 

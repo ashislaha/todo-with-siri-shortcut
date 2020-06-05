@@ -85,6 +85,7 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskActivityType)
 			userActivity.addUserInfoEntries(from: ["DidCreatedTask": true])
 			
+			//let response = TODOIntentResponse(code: .continueInApp, userActivity: userActivity) // if we want to open the app
 			let response = TODOIntentResponse.success(primary: intent.primaryTask)
 			response.userActivity = userActivity
 			completion(response)

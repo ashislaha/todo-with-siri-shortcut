@@ -12,6 +12,12 @@ import IntentsUI
 
 class HistoryViewController: UITableViewController {
 
+	private let taskDetailView: TaskDetailView = {
+		let view = TaskDetailView()
+		view.translatesAutoresizingMaskIntoConstraints = false
+		return view
+	}()
+	
 	// MARK:- View Controller life cycle
 	
 	override func viewDidLoad() {
@@ -56,6 +62,19 @@ extension HistoryViewController {
 		addToSiriButton.delegate = self
 		addToSiriButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
 		cell.accessoryView = addToSiriButton
+	}
+	
+	public func addedNewTask(task: Task) {
+		
+		taskDetailView.delegate = self
+		taskDetailView.task = task
+		
+		view.addSubview(taskDetailView)
+		NSLayoutConstraint.activate([
+			taskDetailView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			taskDetailView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+			taskDetailView.widthAnchor.constraint(equalToConstant: view.frame.size.width-100)
+		])
 	}
 }
 // UITableViewDataSource
@@ -130,4 +149,11 @@ extension HistoryViewController: INUIEditVoiceShortcutViewControllerDelegate {
 	}
 }
 
+
+extension HistoryViewController: TaskDetailViewDelegate {
+	func doneButtonTapped() {
+		tableView.reloadData()
+		taskDetailView.removeFromSuperview()
+	}
+}
 

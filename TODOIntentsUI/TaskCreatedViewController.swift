@@ -38,16 +38,16 @@ class TaskCreatedViewController: UIViewController {
 			switch primary {
 			case .coding(_):
 				createdView.imageView.image = UIImage(named: "coding")
-				createdView.message.text = "Created a Coding task with \(task.secondary.getTitle()) language"
+				createdView.message.text = "Do you want to create a Coding task with \(task.secondary.getTitle()) language"
 			case .listening(_):
 				createdView.imageView.image = UIImage(named: "listening")
-				createdView.message.text = "Created a Listening task of \(task.secondary.getTitle())"
+				createdView.message.text = "Let's create a Listening task of \(task.secondary.getTitle())"
 			case .playing(_):
 				createdView.imageView.image = UIImage(named: "game")
-				createdView.message.text = "Task Created for playing \(task.secondary.getTitle()) game"
+				createdView.message.text = "Do you want to play \(task.secondary.getTitle()) game"
 			case .studying(_):
 				createdView.imageView.image = UIImage(named: "studying")
-				createdView.message.text = "Task Created for studying of author \(task.secondary.getTitle())"
+				createdView.message.text = "Want to study a book of author \(task.secondary.getTitle())"
 			default:
 				break
 			}
