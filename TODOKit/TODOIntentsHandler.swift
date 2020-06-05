@@ -11,7 +11,7 @@ import Intents
 
 public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 	
-	// Resolve & confirm
+	//MARK:- 1. Resolve
 	public func resolvePrimaryTask(for intent: TODOIntent, with completion: @escaping (PrimaryTaskResolutionResult) -> Void) {
 		
 		// if primary task is not defined, then ask the user to provide it
@@ -57,8 +57,24 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 		}
 	}
 	
+	//MARK:- 2. confirm intent
+	public func confirm(intent: TODOIntent, completion: @escaping (TODOIntentResponse) -> Void) {
+		
+		guard let task = Task.createTask(from: intent) else {
+			print("intent does not contains all the necessary information to create a task")
+			completion(TODOIntentResponse(code: .failure, userActivity: nil))
+			return
+		}
+		guard task.primary != .none else {
+			print("primary task must be present")
+			completion(TODOIntentResponse(code: .unspecified, userActivity: nil))
+			return
+		}
+		
+		completion(TODOIntentResponse(code: .ready, userActivity: nil))
+	}
 	
-	// Handle
+	//MARK:- 3. Handle Intent (once it is resolved & confirmed)
 	public func handle(intent: TODOIntent, completion: @escaping (TODOIntentResponse) -> Void) {
 		
 		// the user confirmed the primary and secondary task, let's create the "Task" object and add to TaskManager list

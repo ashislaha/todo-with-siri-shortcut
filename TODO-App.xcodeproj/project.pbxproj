@@ -29,9 +29,8 @@
 		55514EE424798011008BAD5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE324798011008BAD5C /* Assets.xcassets */; };
 		55514EE724798011008BAD5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55514EE524798011008BAD5C /* LaunchScreen.storyboard */; };
 		55514EEF24798EF7008BAD5C /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */; };
-		558943CB2486A387004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
-		558943CC2486A387004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
-		558943CD2486A47D004D98D9 /* Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558943CA2486A387004D98D9 /* Shared.xcassets */; };
+		55D468362489F83E000B50C3 /* TaskCreatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D468352489F83E000B50C3 /* TaskCreatedViewController.swift */; };
+		55D468382489FAD3000B50C3 /* TaskCreatedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D468372489FAD3000B50C3 /* TaskCreatedView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,13 +56,6 @@
 			remoteInfo = TODOKit;
 		};
 		551F3733247FB72300D7413B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55512593247CF3C400B8F845;
-			remoteInfo = TODOKit;
-		};
-		551F3736247FB73100D7413B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 55514ECF2479800A008BAD5C /* Project object */;
 			proxyType = 1;
@@ -125,7 +117,9 @@
 		55514EE824798011008BAD5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		55514EF0247A7675008BAD5C /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
-		558943CA2486A387004D98D9 /* Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Shared.xcassets; sourceTree = "<group>"; };
+		55D4683424892F9D000B50C3 /* TODO-AppDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TODO-AppDebug.entitlements"; sourceTree = "<group>"; };
+		55D468352489F83E000B50C3 /* TaskCreatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCreatedViewController.swift; sourceTree = "<group>"; };
+		55D468372489FAD3000B50C3 /* TaskCreatedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCreatedView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				551F3717247FA4BD00D7413B /* IntentViewController.swift */,
+				55D468352489F83E000B50C3 /* TaskCreatedViewController.swift */,
+				55D468372489FAD3000B50C3 /* TaskCreatedView.xib */,
 				551F3719247FA4BD00D7413B /* MainInterface.storyboard */,
 				551F371C247FA4BD00D7413B /* Info.plist */,
 			);
@@ -199,7 +195,6 @@
 				55514EF0247A7675008BAD5C /* TaskManager.swift */,
 				551F3703247F687800D7413B /* Intents.intentdefinition */,
 				551F372C247FB17B00D7413B /* TODOIntentsHandler.swift */,
-				558943CA2486A387004D98D9 /* Shared.xcassets */,
 			);
 			path = TODOKit;
 			sourceTree = "<group>";
@@ -238,6 +233,7 @@
 		55514ED92479800A008BAD5C /* TODO-App */ = {
 			isa = PBXGroup;
 			children = (
+				55D4683424892F9D000B50C3 /* TODO-AppDebug.entitlements */,
 				55514EDA2479800A008BAD5C /* AppDelegate.swift */,
 				55514EDC2479800A008BAD5C /* SceneDelegate.swift */,
 				55514EDE2479800A008BAD5C /* HistoryViewController.swift */,
@@ -281,7 +277,6 @@
 			);
 			dependencies = (
 				551F3734247FB72300D7413B /* PBXTargetDependency */,
-				551F3737247FB73100D7413B /* PBXTargetDependency */,
 			);
 			name = TODOIntentsUI;
 			productName = TODOIntentsUI;
@@ -376,7 +371,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				558943CB2486A387004D98D9 /* Shared.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,8 +378,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				558943CC2486A387004D98D9 /* Shared.xcassets in Resources */,
 				551F371B247FA4BD00D7413B /* MainInterface.storyboard in Resources */,
+				55D468382489FAD3000B50C3 /* TaskCreatedView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +389,6 @@
 			files = (
 				55514EE724798011008BAD5C /* LaunchScreen.storyboard in Resources */,
 				55514EE424798011008BAD5C /* Assets.xcassets in Resources */,
-				558943CD2486A47D004D98D9 /* Shared.xcassets in Resources */,
 				55514EE22479800A008BAD5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D468362489F83E000B50C3 /* TaskCreatedViewController.swift in Sources */,
 				551F372B247FA58000D7413B /* Intents.intentdefinition in Sources */,
 				551F3718247FA4BD00D7413B /* IntentViewController.swift in Sources */,
 			);
@@ -465,11 +459,6 @@
 			isa = PBXTargetDependency;
 			target = 55512593247CF3C400B8F845 /* TODOKit */;
 			targetProxy = 551F3733247FB72300D7413B /* PBXContainerItemProxy */;
-		};
-		551F3737247FB73100D7413B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55512593247CF3C400B8F845 /* TODOKit */;
-			targetProxy = 551F3736247FB73100D7413B /* PBXContainerItemProxy */;
 		};
 		5551259D247CF44300B8F845 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -727,8 +716,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "TODO-App/TODO-AppDebug.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AFNUCJJ56P;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "TODO-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
