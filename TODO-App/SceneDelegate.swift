@@ -61,7 +61,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-//<<<<<<< HEAD
 		if userActivity.activityType == "com.myapp.name.todo-task-activity",
 			let _ = userActivity.userInfo as? [String: String] {
 			print(userActivity.userInfo ?? [:])
@@ -71,7 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			print(userActivity.activityType)
 			
 		}
-//=======
 		print(userActivity.userInfo ?? [:])
 		
 		guard let intent = userActivity.interaction?.intent as? TODOIntent,
