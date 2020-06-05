@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaskCreatedViewController" customModule="TODOIntentsUI" customModuleProvider="target">
+            <connections>
+                <outlet property="createdView" destination="Ujj-AV-RHY" id="Idt-Rk-h84"/>
+                <outlet property="view" destination="Ujj-AV-RHY" id="aye-oP-srw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Ujj-AV-RHY" customClass="TaskCreatedView" customModule="TODOIntentsUI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="leX-Wp-m43">
+                    <rect key="frame" x="20" y="90" width="64" height="64"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="GOm-Cw-UB6"/>
+                        <constraint firstAttribute="width" constant="64" id="fVt-TW-XUf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCZ-wx-Hkt">
+                    <rect key="frame" x="92" y="122" width="314" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.94509803921568625" green="0.76862745098039209" blue="0.058823529411764705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3Ac-Fs-tDf" firstAttribute="trailing" secondItem="pCZ-wx-Hkt" secondAttribute="trailing" constant="8" id="GsC-dO-z80"/>
+                <constraint firstItem="pCZ-wx-Hkt" firstAttribute="leading" secondItem="leX-Wp-m43" secondAttribute="trailing" constant="8" id="ZbI-DL-o4x"/>
+                <constraint firstItem="leX-Wp-m43" firstAttribute="centerY" secondItem="3Ac-Fs-tDf" secondAttribute="centerY" id="lHe-ZX-8ia"/>
+                <constraint firstItem="pCZ-wx-Hkt" firstAttribute="centerY" secondItem="3Ac-Fs-tDf" secondAttribute="centerY" id="omu-uC-A6S"/>
+                <constraint firstItem="leX-Wp-m43" firstAttribute="leading" secondItem="3Ac-Fs-tDf" secondAttribute="leading" constant="20" id="ot4-62-QDv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="3Ac-Fs-tDf"/>
+            <connections>
+                <outlet property="imageView" destination="leX-Wp-m43" id="0RQ-32-8iN"/>
+                <outlet property="message" destination="pCZ-wx-Hkt" id="b6s-l9-FkY"/>
+            </connections>
+            <point key="canvasLocation" x="152.17391304347828" y="-170.75892857142856"/>
+        </view>
+    </objects>
+</document>

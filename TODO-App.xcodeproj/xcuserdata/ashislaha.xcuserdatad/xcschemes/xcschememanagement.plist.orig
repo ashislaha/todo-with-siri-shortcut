@@ -12,25 +12,17 @@
 		<key>TODOIntents.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>2</integer>
-=======
 			<integer>1</integer>
->>>>>>> 033691abe7a636c0db0916269f4b6872be7d5e68
 		</dict>
 		<key>TODOIntentsUI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<key>TODOKit.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-<<<<<<< HEAD
-			<integer>0</integer>
-=======
 			<integer>3</integer>
->>>>>>> 033691abe7a636c0db0916269f4b6872be7d5e68
 		</dict>
 	</dict>
 </dict>
