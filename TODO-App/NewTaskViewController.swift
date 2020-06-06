@@ -39,15 +39,9 @@ class NewTaskViewController: UIViewController {
 	}
 	@IBOutlet weak var addToSiriView: UIView!
 	
-	// MARK:- ViewController life cycle
-	override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
 	
 	// MARK:- Actions
 	@IBAction func tapChooseTask(_ sender: UIButton) {
-		
 		showActionSheet(taskType: .primary, primaryTypes: TaskManager.shared.taskList)
 	}
 	

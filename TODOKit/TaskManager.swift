@@ -21,8 +21,10 @@ public struct Constants {
 	}
 	
 	public struct UserActivity {
-		public static let createTaskActivityType = "com.todo.list.createTask"
+		public static let createTaskByIntent = "com.todo.list.createTask.intent"
 		public static let taskHistoryType = "com.todo.list.history"
+		public static let createTaskByUserActivity = "com.todo.list.createTask.useractivity"
+		public static let createIdentifier = "createIdentifier"
 	}
 }
 

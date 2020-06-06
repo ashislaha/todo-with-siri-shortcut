@@ -18,21 +18,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let _ = (scene as? UIWindowScene) else { return }
 	}
 	
+	
 	/// this method is getting called when we support multi-window feature 
 	func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+	
+		guard let windowScene = scene as? UIWindowScene,
+		let navigationVC = windowScene.windows.first?.rootViewController as? UINavigationController,
+			let historyVC = navigationVC.viewControllers.first as? HistoryViewController else { return }
 		
-		guard let intent = userActivity.interaction?.intent as? TODOIntent,
-			let task = Task.createTask(from: intent) else { return }
-		
-		TaskManager.shared.addTask(task: task)
-		
-		if let windowScene = scene as? UIWindowScene,
-			let navigationVC = windowScene.windows.first?.rootViewController as? UINavigationController,
-			let historyVC = navigationVC.viewControllers.first as? HistoryViewController {
+		// intent
+		if let intent = userActivity.interaction?.intent as? TODOIntent,
+			let task = Task.createTask(from: intent) {
 			
+			TaskManager.shared.addTask(task: task)
 			historyVC.showTask(task: task)
 		}
+		
+		// useractivity
+		if userActivity.activityType == Constants.UserActivity.createTaskByUserActivity {
+			historyVC.gotoNewTaskPage()
+		}
 	}
+	
+	
 	
 	func sceneDidDisconnect(_ scene: UIScene) {
 		// Called as the scene is being released by the system.

@@ -49,7 +49,6 @@
                     <navigationItem key="navigationItem" title="TODO History" id="KKW-fj-7Yx">
                         <barButtonItem key="rightBarButtonItem" title="New Task" id="xnj-YE-UyO">
                             <connections>
-                                <action selector="tapNewTask:" destination="MFB-Bh-uge" id="8De-HR-UQO"/>
                                 <segue destination="RIk-1C-Afd" kind="show" identifier="newTask" id="ZX3-9I-E6H"/>
                             </connections>
                         </barButtonItem>

@@ -33,21 +33,37 @@ class HistoryViewController: UITableViewController {
 		tableView.reloadData()
 	}
 	
-	// MARK:- Actions
-	@IBAction func tapNewTask(_ sender: UIBarButtonItem) {
-		print("create a new task")
+	/// restore activity state
+	/// this method is getting called when AppDelegate restores the viewcontroller -- worked for single window system
+	/// func application(_ application:  continue userActivity: , restorationHandler) -- restorationHandler(controllers)
+	override func restoreUserActivityState(_ activity: NSUserActivity) {
+		super.restoreUserActivityState(activity)
+		
+		if activity.activityType == Constants.UserActivity.createTaskByIntent {
+			
+			guard let intent = activity.interaction?.intent as? TODOIntent,
+				let task = Task.createTask(from: intent) else { return }
+			
+			TaskManager.shared.addTask(task: task)
+			showTask(task: task)
+			
+		} else if activity.activityType == Constants.UserActivity.taskHistoryType {
+			tableView.reloadData()
+		}
 	}
+	
 }
 //function for donating shortcut
 extension HistoryViewController {
 	
 	func activateActivity() {
-		userActivity = NSUserActivity(activityType: Constants.UserActivity.taskHistoryType)
+		userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskByUserActivity)
+		userActivity?.persistentIdentifier = Constants.UserActivity.createIdentifier
 		userActivity?.isEligibleForSearch = true
 		userActivity?.isEligibleForPrediction = true
-		userActivity?.title = "Task History"
-		userActivity?.userInfo = ["showHistory": true]
-		userActivity?.suggestedInvocationPhrase = "show my task list"
+		userActivity?.title = "Create a Task"
+		userActivity?.userInfo = ["create": true]
+		userActivity?.suggestedInvocationPhrase = "Create a Task"
 		userActivity?.becomeCurrent()
 	}
 	
@@ -76,6 +92,10 @@ extension HistoryViewController {
 			taskDetailView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
 			taskDetailView.widthAnchor.constraint(equalToConstant: view.frame.size.width-100)
 		])
+	}
+	
+	public func gotoNewTaskPage() {
+		performSegue(withIdentifier: "newTask", sender: nil)
 	}
 }
 // UITableViewDataSource
@@ -117,7 +137,6 @@ extension HistoryViewController {
 				}
 			}
 		}
-		
 	}
 }
 
@@ -173,7 +192,7 @@ extension HistoryViewController: INUIEditVoiceShortcutViewControllerDelegate {
 	}
 }
 
-
+// MARK:- TaskDetailViewDelegate
 extension HistoryViewController: TaskDetailViewDelegate {
 	func doneButtonTapped() {
 		tableView.reloadData()

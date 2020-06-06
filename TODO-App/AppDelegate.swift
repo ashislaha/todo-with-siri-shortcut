@@ -27,16 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	/// this method is getting called when we do not support multi-window feature - useful for single window feature
 	func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
 		
-		guard let intent = userActivity.interaction?.intent as? TODOIntent,
-			let task = Task.createTask(from: intent) else { return false }
+		guard let _ = userActivity.interaction?.intent as? TODOIntent,
+			let keyWindow = UIApplication.shared.delegate?.window,
+			let navigationController = keyWindow?.rootViewController as? UINavigationController else { return false }
 		
-		TaskManager.shared.addTask(task: task)
-		
-		guard let keyWindow = UIApplication.shared.delegate?.window,
-			let navigationController = keyWindow?.rootViewController as? UINavigationController,
-			let historyVC = navigationController.visibleViewController as? HistoryViewController else { return false }
-		
-		historyVC.showTask(task: task)
+		restorationHandler(navigationController.viewControllers)
 		return true
 	}
 	

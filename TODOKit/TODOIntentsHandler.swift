@@ -82,7 +82,7 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 			TaskManager.shared.addTask(task: task)
 			
 			// update useractivity
-			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskActivityType)
+			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskByIntent)
 			userActivity.addUserInfoEntries(from: ["DidCreatedTask": true])
 			
 			//let response = TODOIntentResponse(code: .continueInApp, userActivity: userActivity) // if we want to open the app
@@ -92,7 +92,7 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 			
 		} else {
 			// there is some error to create a task
-			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskActivityType)
+			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskByIntent)
 			userActivity.addUserInfoEntries(from: ["DidCreatedTask": false])
 			
 			let response = TODOIntentResponse.failure(primary: intent.primaryTask)
