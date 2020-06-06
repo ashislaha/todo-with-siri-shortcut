@@ -9,6 +9,7 @@
 import UIKit
 import TODOKit
 import IntentsUI
+import Intents
 
 class HistoryViewController: UITableViewController {
 
@@ -41,12 +42,12 @@ class HistoryViewController: UITableViewController {
 extension HistoryViewController {
 	
 	func activateActivity() {
-		userActivity = NSUserActivity(activityType: "com.myapp.name.todo-task-activity")
-		userActivity?.isEligibleForSearch=true
-		userActivity?.isEligibleForPrediction=true
+		userActivity = NSUserActivity(activityType: Constants.UserActivity.taskHistoryType)
+		userActivity?.isEligibleForSearch = true
+		userActivity?.isEligibleForPrediction = true
 		userActivity?.title = "Task History"
-		userActivity?.userInfo = ["key":"value"]
-		userActivity?.suggestedInvocationPhrase = "show me the tasks to do"
+		userActivity?.userInfo = ["showHistory": true]
+		userActivity?.suggestedInvocationPhrase = "show my task list"
 		userActivity?.becomeCurrent()
 	}
 	
@@ -64,7 +65,7 @@ extension HistoryViewController {
 		cell.accessoryView = addToSiriButton
 	}
 	
-	public func addedNewTask(task: Task) {
+	public func showTask(task: Task) {
 		
 		taskDetailView.delegate = self
 		taskDetailView.task = task
@@ -96,13 +97,36 @@ extension HistoryViewController {
 		addSiriShortCutButtonIfNeeded(task: task, cell: cell)
 		return cell
 	}
+	
+	override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		
+		guard editingStyle == .delete else { return }
+		
+		// let's delete an existing task
+		let task = TaskManager.shared.tasks[indexPath.row]
+		
+		TaskManager.shared.tasks.remove(at: indexPath.row)
+		tableView.reloadData()
+		TaskManager.shared.saveTasksToFileSystem()
+		
+		// delete the donation in parallel
+		if let identifier = task.intent.identifier {
+			INInteraction.delete(with: identifier) { (error) in
+				if error != nil {
+					print("failed to delete the interactions with error \(error?.localizedDescription ?? "")")
+				}
+			}
+		}
+		
+	}
 }
 
 // UITableViewDelegate
 extension HistoryViewController {
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		print(indexPath)
+		let task = TaskManager.shared.tasks[indexPath.row]
+		showTask(task: task)
 	}
 }
 

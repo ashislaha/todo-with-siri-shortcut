@@ -24,7 +24,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		return true
 	}
 	
-	// MARK: UISceneSession Lifecycle
+	/// this method is getting called when we do not support multi-window feature - useful for single window feature
+	func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+		
+		guard let intent = userActivity.interaction?.intent as? TODOIntent,
+			let task = Task.createTask(from: intent) else { return false }
+		
+		TaskManager.shared.addTask(task: task)
+		
+		guard let keyWindow = UIApplication.shared.delegate?.window,
+			let navigationController = keyWindow?.rootViewController as? UINavigationController,
+			let historyVC = navigationController.visibleViewController as? HistoryViewController else { return false }
+		
+		historyVC.showTask(task: task)
+		return true
+	}
 	
 	func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 		// Called when a new scene session is being created.

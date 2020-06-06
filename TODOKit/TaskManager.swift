@@ -22,6 +22,7 @@ public struct Constants {
 	
 	public struct UserActivity {
 		public static let createTaskActivityType = "com.todo.list.createTask"
+		public static let taskHistoryType = "com.todo.list.history"
 	}
 }
 
@@ -188,15 +189,19 @@ public struct Task {
 		case .coding(_):
 			taskIntent.primaryTask = .coding
 			taskIntent.setImage(INImage(named: "coding"), forParameterNamed: \TODOIntent.coding)
+			
 		case .listening(_):
 			taskIntent.primaryTask = .listening
 			taskIntent.setImage(INImage(named: "listening"), forParameterNamed: \TODOIntent.listening)
+			
 		case .studying(_):
 			taskIntent.primaryTask = .studying
 			taskIntent.setImage(INImage(named: "studying"), forParameterNamed: \TODOIntent.studying)
+			
 		case .playing(_):
 			taskIntent.primaryTask = .playing
 			taskIntent.setImage(INImage(named: "game"), forParameterNamed: \TODOIntent.playing)
+			
 		case .none:
 			taskIntent.primaryTask = .unknown
 		}
@@ -204,12 +209,19 @@ public struct Task {
 		switch secondary {
 		case is Album:
 			taskIntent.listening = Album(rawValue: secondary.raw) ?? Album.unknown
+			taskIntent.suggestedInvocationPhrase = "listening of " + secondary.getTitle()
+		
 		case is Game:
 			taskIntent.playing = Game(rawValue: secondary.raw) ?? Game.unknown
+			taskIntent.suggestedInvocationPhrase = "playing game of " + secondary.getTitle()
+			
 		case is BookAuthor:
 			taskIntent.studying = BookAuthor(rawValue: secondary.raw) ?? BookAuthor.unknown
+			taskIntent.suggestedInvocationPhrase = "reading book of " + secondary.getTitle()
+			
 		case is CodingLanguage:
 			taskIntent.coding = CodingLanguage(rawValue: secondary.raw) ?? CodingLanguage.unknown
+			taskIntent.suggestedInvocationPhrase = "coding in " + secondary.getTitle()
 		default: break
 		}
 		return taskIntent

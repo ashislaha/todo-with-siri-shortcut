@@ -19,7 +19,7 @@ class TaskDetailView: UIView {
 	
 	public var task: Task? {
 		didSet {
-			primaryTaskLabel.text = "A New task is created"
+			primaryTaskLabel.text = "Created Task"
 			secondaryTaskLabel.text = (task?.primaryTaskDescription ?? "") + " - " + (task?.secondaryTaskDescription ?? "")
 		}
 	}
