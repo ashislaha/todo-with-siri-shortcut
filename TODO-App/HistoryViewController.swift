@@ -182,15 +182,15 @@ extension HistoryViewController: INUIAddVoiceShortcutViewControllerDelegate {
 // MARK:- INUIEditVoiceShortcutViewControllerDelegate
 extension HistoryViewController: INUIEditVoiceShortcutViewControllerDelegate {
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didUpdate voiceShortcut: INVoiceShortcut?, error: Error?) {
-		
+		controller.dismiss(animated: true, completion: nil)
 	}
 	
 	func editVoiceShortcutViewController(_ controller: INUIEditVoiceShortcutViewController, didDeleteVoiceShortcutWithIdentifier deletedVoiceShortcutIdentifier: UUID) {
-		
+		controller.dismiss(animated: true, completion: nil)
 	}
 	
 	func editVoiceShortcutViewControllerDidCancel(_ controller: INUIEditVoiceShortcutViewController) {
-		
+		controller.dismiss(animated: true, completion: nil)
 	}
 }
 

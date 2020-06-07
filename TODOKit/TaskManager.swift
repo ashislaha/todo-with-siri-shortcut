@@ -152,6 +152,10 @@ extension CodingLanguage: SecondaryTaskType {
 
 
 //MARK:- Task
+
+/// Task:-
+/// it is a struct data type to save a specific task.
+/// it consists of the primary and secondary type. Task also contains the information about the time the user wants to perform the task and its created time.
 public struct Task {
 	
 	public let primary: PrimaryTaskType
@@ -286,7 +290,11 @@ public struct Task {
 	}
 }
 
+// MARK:- TaskManager
 
+/// TaskManager:-
+/// it is a singleton which helps to handle tasks - like adding / removing a task from taskList
+/// it also saves the task to persistent storage in File system
 
 open class TaskManager {
 	public static let shared = TaskManager()

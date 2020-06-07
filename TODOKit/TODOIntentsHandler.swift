@@ -79,7 +79,7 @@ public class TODOIntentsHandler: NSObject, TODOIntentHandling {
 		
 		// the user confirmed the primary and secondary task, let's create the "Task" object and add to TaskManager list
 		if let task = Task.createTask(from: intent) {
-			TaskManager.shared.addTask(task: task)
+			TaskManager.shared.addTask(task: task) // this is in-memory saving and it is not happening when the app is not running.
 			
 			// update useractivity
 			let userActivity = NSUserActivity(activityType: Constants.UserActivity.createTaskByIntent)
