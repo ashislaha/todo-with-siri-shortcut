@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5507A135248CB97600FFF15B /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5507A134248CB97600FFF15B /* TaskTableViewCell.swift */; };
 		551F3704247F687800D7413B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 551F3703247F687800D7413B /* Intents.intentdefinition */; settings = {ATTRIBUTES = (no_codegen, ); }; };
 		551F3705247F687800D7413B /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 551F3703247F687800D7413B /* Intents.intentdefinition */; };
 		551F370D247FA4BD00D7413B /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551F370C247FA4BD00D7413B /* IntentHandler.swift */; };
@@ -99,6 +100,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5507A134248CB97600FFF15B /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		551F3703247F687800D7413B /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		551F370A247FA4BD00D7413B /* TODOIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TODOIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		551F370C247FA4BD00D7413B /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				55514EDA2479800A008BAD5C /* AppDelegate.swift */,
 				55514EDC2479800A008BAD5C /* SceneDelegate.swift */,
 				55514EDE2479800A008BAD5C /* HistoryViewController.swift */,
+				5507A134248CB97600FFF15B /* TaskTableViewCell.swift */,
 				55D4683B248A7D9D000B50C3 /* TaskDetailView.swift */,
 				55514EEE24798EF7008BAD5C /* NewTaskViewController.swift */,
 				5551258F247CF24600B8F845 /* assets */,
@@ -436,6 +439,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5507A135248CB97600FFF15B /* TaskTableViewCell.swift in Sources */,
 				55514EDF2479800A008BAD5C /* HistoryViewController.swift in Sources */,
 				55514EDB2479800A008BAD5C /* AppDelegate.swift in Sources */,
 				55D4683C248A7D9D000B50C3 /* TaskDetailView.swift in Sources */,

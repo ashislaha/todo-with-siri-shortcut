@@ -16,28 +16,52 @@ class NewTaskViewController: UIViewController {
 	private var currentTask: PrimaryTaskType = .none {
 		didSet {
 			taskTypeResult?.text = currentTask.getTitle()
-			
-			secondaryTaskTypeResult?.isHidden = true
-			subTaskButtonOutlet.isHidden = false
 			subTaskButtonOutlet.setTitle(currentTask.getSubTaskTitle(), for: .normal)
 		}
 	}
 	
 	private var secondaryTask: SecondaryTaskType?
+	private var timePicker: UIDatePicker!
+	private var chooseTime: Date?
 	
 	// MARK:- Outlets
-	@IBOutlet weak var taskTypeResult: UILabel!
+	
+	@IBOutlet weak var taskButtonOutlet: UIButton! {
+		didSet {
+			taskButtonOutlet.layer.masksToBounds = true
+			taskButtonOutlet.layer.cornerRadius = 10
+		}
+	}
+	@IBOutlet weak var taskTypeResult: UILabel! {
+		didSet {
+			taskTypeResult.text = ""
+		}
+	}
+	
 	@IBOutlet weak var subTaskButtonOutlet: UIButton! {
 		didSet {
-			subTaskButtonOutlet.isHidden = true
+			subTaskButtonOutlet.layer.masksToBounds = true
+			subTaskButtonOutlet.layer.cornerRadius = 10
 		}
 	}
 	@IBOutlet weak var secondaryTaskTypeResult: UILabel! {
 		didSet {
-			secondaryTaskTypeResult.isHidden = true
+			secondaryTaskTypeResult.text = ""
 		}
 	}
-	@IBOutlet weak var addToSiriView: UIView!
+
+	
+	@IBOutlet weak var chooseTimeOutlet: UIButton! {
+		didSet {
+			chooseTimeOutlet.layer.masksToBounds = true
+			chooseTimeOutlet.layer.cornerRadius = 10
+		}
+	}
+	@IBOutlet weak var timeLabel: UILabel! {
+		didSet {
+			timeLabel.text = ""
+		}
+	}
 	
 	
 	// MARK:- Actions
@@ -47,7 +71,10 @@ class NewTaskViewController: UIViewController {
 	
 	@IBAction func tapSubTask(_ sender: UIButton) {
 		
-		guard currentTask != PrimaryTaskType.none else { return }
+		guard currentTask != PrimaryTaskType.none else {
+			self.showAlert(title: "Choose Primary First")
+			return
+		}
 		
 		switch currentTask {
 		case .coding(let languages): showActionSheet(taskType: .secondary, secondaryOptions: languages)
@@ -58,15 +85,55 @@ class NewTaskViewController: UIViewController {
 		}
 	}
 	
+	@IBAction func tapChooseTime(_ sender: UIButton) {
+		
+		guard currentTask != PrimaryTaskType.none else {
+			self.showAlert(title: "Choose Primary Task first")
+			return
+		}
+		
+		let height: CGFloat = 200
+		timePicker = UIDatePicker(frame: CGRect(x: view.frame.midX - 100, y: view.frame.maxY - height, width: view.frame.size.width - 200, height: height))
+		timePicker.layer.masksToBounds = true
+		timePicker.layer.cornerRadius = 20
+		timePicker.datePickerMode = .time
+		timePicker.backgroundColor = UIColor(red: 46/255.0, green: 204/255.0, blue: 113/255.0, alpha: 1.0) // https://flatuicolors.com/palette/defo
+		view.addSubview(timePicker)
+		timePicker.addTarget(self, action: #selector(saveTime), for: .valueChanged)
+	}
+	
+	@objc func saveTime() {
+		guard let timePicker = timePicker else { return }
+		
+		chooseTime = timePicker.date
+		let formatter = DateFormatter()
+		formatter.timeStyle = .short
+		timeLabel.text = formatter.string(from: timePicker.date)
+		timePicker.removeFromSuperview()
+	}
+	
 	@IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
 		
-		guard currentTask != .none, let secondary = secondaryTask else { return }
+		guard currentTask != .none else {
+			self.showAlert(title: "Choose Primary Task first")
+			return
+		}
+			
+		guard let secondary = secondaryTask else {
+			self.showAlert(title: "Choose Secondary Task")
+			return
+		}
+		
+		guard let chooseTime = chooseTime else {
+			self.showAlert(title: "Choose a time")
+			return
+		}
 		
 		// create a new task with primary task, secondary task and date & time
 		let task = Task(primary: currentTask,
 						secondary: secondary,
 						createTime: Date(),
-						performTime: Date(),
+						performTime: chooseTime,
 						primaryDescription: currentTask.getTitle(),
 						secondaryDescription: secondary.getTitle())
 		
@@ -103,7 +170,6 @@ class NewTaskViewController: UIViewController {
 			
 			for each in secondaryOptions {
 				let alertAction = UIAlertAction(title: each.getTitle(), style: .default) { (action) in
-					self.secondaryTaskTypeResult.isHidden = false
 					self.secondaryTaskTypeResult.text = each.getTitle()
 					self.secondaryTask = each
 				}
@@ -114,6 +180,15 @@ class NewTaskViewController: UIViewController {
 		let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
 		alertController.addAction(cancelAction)
 		present(alertController, animated: true, completion: nil)
+	}
+	
+	private func showAlert(title: String) {
+		let alertController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+		let okayAction = UIAlertAction(title: "Okay", style: .default) { (action) in
+			alertController.dismiss(animated: true, completion: nil)
+		}
+		alertController.addAction(okayAction)
+		self.present(alertController, animated: true, completion: nil)
 	}
 }
 

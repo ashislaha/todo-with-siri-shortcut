@@ -24,6 +24,7 @@ class HistoryViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		tableView.rowHeight = 100
 		tableView.tableFooterView = UIView()
 		activateActivity()
 	}
@@ -77,7 +78,7 @@ extension HistoryViewController {
 		let addToSiriButton = INUIAddVoiceShortcutButton(style: .whiteOutline)
 		addToSiriButton.shortcut = INShortcut(intent: task.intent)
 		addToSiriButton.delegate = self
-		addToSiriButton.frame = CGRect(x: 0, y: 0, width: 180, height: 40)
+		addToSiriButton.frame = CGRect(x: 0, y: 0, width: 160, height: 40)
 		cell.accessoryView = addToSiriButton
 	}
 	
@@ -109,11 +110,12 @@ extension HistoryViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TaskTableViewCell else {
+			return UITableViewCell()
+		}
 		
 		let task = TaskManager.shared.tasks[indexPath.row]
-		cell.textLabel?.text = "Task \(indexPath.row + 1): \(task.primaryTaskDescription)"
-		cell.detailTextLabel?.text = task.secondaryTaskDescription
+		cell.updateView(task: task)
 		addSiriShortCutButtonIfNeeded(task: task, cell: cell)
 		return cell
 	}
