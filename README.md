@@ -35,6 +35,9 @@ Sub-task:
 
 4. How to maintain the business logic between app target and Intents extension.
 
+## SiriKit Intents fundamental flow:
+<img width="492" alt="Screenshot 2020-06-08 at 8 49 20 PM" src="https://user-images.githubusercontent.com/10649284/84049147-b5b0b980-a9c9-11ea-8b52-d5a369fcf932.png">
+
 ## UI flow:
 
 ## Task History Page:
