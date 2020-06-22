@@ -38,6 +38,9 @@ Sub-task:
 ## SiriKit Intents fundamental flow:
 <img width="492" alt="Screenshot 2020-06-08 at 8 49 20 PM" src="https://user-images.githubusercontent.com/10649284/84049147-b5b0b980-a9c9-11ea-8b52-d5a369fcf932.png">
 
+## Xcode generates the swift files under build directory based on intents file definition:
+<img width="1542" alt="Screenshot 2020-06-22 at 12 13 35 PM" src="https://user-images.githubusercontent.com/10649284/85298873-38557080-b4c2-11ea-96e2-8e5410812d72.png">
+
 ## UI flow:
 
 ## Task History Page:
